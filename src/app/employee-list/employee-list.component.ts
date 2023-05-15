@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {catchError, map, reduce} from 'rxjs/operators';
-
-import {Employee} from '../employee';
-import {EmployeeService} from '../employee.service';
+import {Employee} from '../models/employee';
+import {EmployeeService} from '../services/employee.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -29,4 +28,18 @@ export class EmployeeListComponent implements OnInit {
     console.error(e);
     return this.errorMessage = e.message || 'Unable to retrieve employees';
   }
+
+  handleEditEmployee(event: any) {
+    const employee = event; 
+    this.employeeService.save(employee);
+    console.log(`editEmployee clicked: ${employee.lastName}`)
+  }
+
+  handleDeleteEmployee(event: any) {
+    const employee = event;
+    this.employeeService.remove(employee);
+    console.log(`deleteEmployee clicked: ${employee.lastName}`)
+  }
+
+
 }

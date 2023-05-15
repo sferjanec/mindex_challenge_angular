@@ -1,12 +1,41 @@
-<mat-card class="employee">
-  <mat-card-header>
-    <mat-card-title>{{employee.lastName}}, {{employee.firstName}}</mat-card-title>
-    <mat-card-subtitle>{{employee.id}}</mat-card-subtitle>
+
+<mat-card >
+  <mat-card-header class="employee">
+    <mat-card-title>{{ employee.lastName }}, {{ employee.firstName}}</mat-card-title>
+    <mat-card-subtitle>Id: {{employee.id}}</mat-card-subtitle>
+    <mat-card-subtitle>Number of Reports: {{ totalReports }} </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <dl>
-      <dt>Job Title</dt>
-      <dd>{{employee.position}}</dd>
-    </dl>
+    <p><strong>Job Title:</strong> {{ employee.position }}</p>
+
+    <div *ngIf="employee.directReports?.length > 0">
+      <h4>Direct Reports:</h4>
+      <div class="direct-report-table">
+        <div class="direct-report-row" *ngFor="let report of directReports" [ngClass]="{ 'direct-report-row' : true }">
+          <div class="direct-report-cell">{{ report.lastName }}, {{ report.firstName }}</div>
+          <div class="direct-report-cell">
+            <button mat-icon-button color="primary" aria-label="Edit" (click)="editReport(report)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" aria-label="Delete" (click)="deleteReport(report)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- <ul>
+        <li *ngFor="let report of directReports" [ngClass]="{ 'direct-report-row' : true }">
+          {{ report.lastName }}, {{ report.firstName }}
+          <button mat-icon-button color="primary" aria-label="Edit" (click)="editReport(report)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" aria-label="Delete" (click)="deleteReport(report)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </li>
+      </ul> -->
+    </div>
+
   </mat-card-content>
 </mat-card>
