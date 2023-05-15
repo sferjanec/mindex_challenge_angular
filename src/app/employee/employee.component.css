@@ -18,14 +18,29 @@
     font-weight: bold;
     color: blue;
   }
+
+  .no-direct-report {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    color: red;
+  }
   
   .direct-report-cell {
     flex: 1;
-    padding: 8px;
     display: flex;
-    justify-content: space-between;
-    align-items: center
+    padding: 8px;
+    justify-content: space-between right;
+    align-items: center;
   }
+
+  /* .button-right {
+    flex: 1;
+    justify-content: space-between left;
+    align-items: center;
+    margin-right: 2%;
+  } */
+
 
   .mat-card {
     background-color: #ffffff;
